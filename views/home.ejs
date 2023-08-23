@@ -1,36 +1,38 @@
 <%- include('../layouts/header') %>
+
 <body>
 
-<div id="myDIV" class="header"  >
-  <h2 style="margin:5px">My To Do List</h2>
-  <form  action = "/add/todo" method ="post" >
+  <div id="myDIV" class="header">
+    <h2 style="margin:5px">My To Do List</h2>
+    <form action="/add/todo" method="post">
 
-  <input  type="text" id="myInput" placeholder="Title..." name="todo" >
+      <input type="text" id="myInput" placeholder="Title..." name="todo">
 
-  <button type="submit" class="addBtn" >Add</button>
-</form>
+      <button type="submit" class="addBtn">Add</button>
+    </form>
 
- 
-</div>
 
-<ul id="myUL">
+  </div>
 
-  <% ToDoList.map(data=>{
+  <ul id="myUL">
+
+    <% ToDoList.map(data=>{
     const show1 = new Date(data.createdAt);
     const show2 = String(show1).split(' '); 
+    const show = show2[1]+" "+show2[2]+" "+show2[3] + " "  + show2[4]; 
    
  %>
 
- 
-   <%if(data.isDeleted ==true){%>
-    <li class="checked" > <a href="/delete2/<%=data.id %>">  <%=  data.todo %> <br> <%=show2%> </a> </li>
+
+    <%if(data.isDeleted ==true){%>
+    <li class="checked"> <a href="/delete2/<%=data.id %>"> <%=  data.todo %> <br> <%=show%> </a> </li>
 
 
-   <%} else { %>
-    <li > <a href="/delete/<%=data.id %>">  <%=  data.todo %> <br> <%=show2%> </a></li>
+    <%} else { %>
+    <li> <a href="/delete/<%=data.id %>"> <%=  data.todo %> <br> <%=show%> </a></li>
 
 
-   <%}%>
+    <%}%>
 
 
    
@@ -41,10 +43,11 @@
     <% }) %>
 
   </ul>
- 
+
 
 
 
 
 </body>
+
 </html>

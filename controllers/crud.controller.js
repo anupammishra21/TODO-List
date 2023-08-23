@@ -2,7 +2,7 @@ const Todo = require('../models/crud.model');
 const fs = require('fs');
 
 class CrudController {
-// method list
+    // method list
 
     async Home(req, res) {
         try {
@@ -18,32 +18,21 @@ class CrudController {
         }
     }
 
-//  method insert
+    //  method insert
 
     async insert(req, res) {
 
-        try{
-
-            
-
-
+        try {
             let save_data = await Todo.create(req.body)
-            console.log(save_data);
-           
-
-            
-            
-
-        }catch(err){
+            res.redirect('/')
+            console.log("TodoData",save_data);
+        } catch (err) {
             throw err
         }
-   
-
-
     }
- 
 
-//    method soft delete
+
+    //    method soft delete
 
     async delete(req, res) {
         try {
@@ -56,26 +45,27 @@ class CrudController {
             console.log(req.params.id);
             res.redirect('/')
 
-    
+
         } catch (err) {
             throw err;
         }
     }
 
 
-    
+
     async delete2(req, res) {
         try {
             let updated_obj = {
                 isDeleted: false
             }
             let deleted_data = await Todo.findByIdAndUpdate(req.params.id, updated_obj);
+            console.log("dataDeleted", deleted_data);
 
-            
+
             console.log(req.params.id);
             res.redirect('/')
 
-    
+
         } catch (err) {
             throw err;
         }
